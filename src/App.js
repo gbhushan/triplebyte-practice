@@ -1,18 +1,14 @@
-import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import {KanbanBoard} from './container/KanbanBoard.js';
-
-
+import { KanbanBoard } from "./container/KanbanBoard.js";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
+      <header className="App-header" />
       <section>
-      <KanbanBoard />
+        <KanbanBoard />
       </section>
     </div>
   );

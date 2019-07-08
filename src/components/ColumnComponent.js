@@ -1,56 +1,60 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import "./styles.scss";
 
-// const state = {
-//     newCardData: []
-// }
+class ColumnComponent extends Component {
+  constructor() {
+    super();
+    this.onClick = this.onClick.bind(this);
+    this.move = this.move.bind(this);
+  }
+  onClick() {
+    const { updateCardData, cardId } = this.props;
+    const result = window.prompt("Add a new Card");
 
-class ColumnComponent extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            newCardData: []
-        };
-        this.onClick = this.onClick.bind(this);
-        this.moveLeft = this.moveLeft.bind(this);
-        this.moveRight = this.moveRight.bind(this);
-    }
-    onClick() {
-        const {newCardData} = this.state;
-        const result = window.prompt("Add a new Card");
-
-        newCardData.push(result);
-        console.log(newCardData);
-        this.setState({
-            newCardData
-        });
-    }
-    moveLeft(event) {
-        debugger;
-        const { updateCardData} = this.props;
-        console.log("move left");
-    }
-    moveRight() {
-        console.log("move right");
-    }
-    render() {
-        const {name, cards} = this.props;
-        const {newCardData} = this.state;
-        return (
-            <div className="card-column">
-                <div className="card-header">{name}</div>
-                <ul>
-                {cards.map((data) =>
-                    <React.Fragment><div onClick={(event) => this.moveLeft(event)}>&lt;</div><li>{data.detail}</li><div onClick={this.moveRight}>&gt;</div></React.Fragment>
-                )}
-                {newCardData.length > 0 && newCardData.map((data) =>
-                    <li>{data}</li>
-                )}
-                </ul>
-                <button onClick={this.onClick}>+ Add a card</button>
-            </div>
-        ) 
-    }
+    updateCardData({
+      cardId,
+      incomingData: {
+        detail: result,
+        id: Math.random() * 100
+      }
+    });
+  }
+  move(detailId, direction) {
+    const { updateCardData, cardId, cards } = this.props;
+    const index = cards.findIndex(card => card.id === detailId);
+    updateCardData({
+      cardId,
+      incomingData: {
+        detail: cards[index].detail,
+        id: cards[index].id
+      },
+      move: {
+        direction,
+        detailIndex: index
+      }
+    });
+  }
+  render() {
+    const { name, cards } = this.props;
+    return (
+      <div className="card-column">
+        <div className="card-header">{name}</div>
+        <ul>
+          {cards.map(data => {
+            const { id } = data;
+            return (
+              <li key={id}>
+                <div onClick={() => this.move(id, "left")}>&lt;</div>
+                <div>{data.detail}</div>
+                <div onClick={() => this.move(id, "right")}>&gt;</div>
+              </li>
+            );
+          })}
+        </ul>
+        <button onClick={this.onClick}>+ Add a card</button>
+      </div>
+    );
+  }
 }
 
 export default ColumnComponent;

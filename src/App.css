@@ -3,27 +3,6 @@
 }
 .App section {
   display: flex;
-  /* margin-left: 25px; */
-    /* margin-right: 25px; */
-}
-.card-header:nth-child(1) {
-  background-color: #8e6e95;
-}
-.card-header:nth-child(2) {
-  background-color: #39a59c;
-}
-.card-header:nth-child(3) {
-  background-color: #344759;
-}
-.card-header:nth-child(4) {
-  background-color: #e8741e;
-}
-
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
 }
 
 .App-header {
