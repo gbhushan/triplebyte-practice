@@ -1,3 +1,3 @@
-// import ColumnComponent from './ColumnComponent';
+import ColumnComponent from "./ColumnComponent.js";
 
-// export ColumnComponent;
+export { ColumnComponent };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ColumnComponent from "../components/ColumnComponent.js";
+import { ColumnComponent } from "../components/";
 
 const cardData = {
   header: "Winnie",
@@ -83,9 +83,9 @@ export class KanbanBoard extends Component {
           cardsInformation[cardIndex - 1].cards.push(incomingData);
           break;
         case "right":
-            cardsInformation[cardIndex + 1].cards.push(incomingData);
+          cardsInformation[cardIndex + 1].cards.push(incomingData);
           break;
-          default:
+        default:
       }
       cardsInformation[cardIndex].cards.splice(move.detailIndex, 1);
     } else {
